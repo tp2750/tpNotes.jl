@@ -41,6 +41,9 @@ tpNotes$ git push --set-upstream origin master
 
 Note that the project name in PkgTemplates doe not include ".jl", but the repo-name does.
 
+After a bit the "CI" and "codecov" badges turn green.
+But the "docs" badges do not work out of the box.
+
 # Overloading Base operator
 
 Overloading a base bianry operator (like `+`):
