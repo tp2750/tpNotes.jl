@@ -44,6 +44,22 @@ Note that the project name in PkgTemplates doe not include ".jl", but the repo-n
 After a bit the "CI" and "codecov" badges turn green.
 But the "docs" badges do not work out of the box.
 
+## Using ssh
+
+Changing to use ssh.
+First check current with `git remote -v `.
+Then change it with `git remote set-url origin ...`:
+
+```{bash}
+tpNotes$ git remote -v 
+origin	https://github.com/tp2750/tpNotes.jl (fetch)
+origin	https://github.com/tp2750/tpNotes.jl (push)
+
+tpNotes$ git remote set-url origin  git@github.com:tp2750/tpNotes.jl.git
+```
+
+Remember the `.git` at the end.
+
 # Overloading Base operator
 
 Overloading a base bianry operator (like `+`):
