@@ -45,7 +45,7 @@ Note that the project name in PkgTemplates doe not include ".jl", but the repo-n
 Overloading a base bianry operator (like `+`):
 
 * Define my own `struct`.
-* Define a method of a base function using that struct.
+* Define a method of a base function using that struct. Use symbol notation for the operator.
 
 No import or export needed.
 
