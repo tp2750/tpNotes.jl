@@ -2,5 +2,7 @@ using tpNotes
 using Test
 
 @testset "tpNotes.jl" begin
-    # Write your tests here.
+    p1 = tpNotes.People("Søren")
+    p2 = tpNotes.People("Mette")
+    @test p1 + p2 == "Søren and Mette"
 end
