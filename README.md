@@ -15,6 +15,7 @@ This repo tracks my notes on things I learn in Julia.
 This repo was setup using this snippet:
 
 ```{julia}
+julia> using PkgTemplates
 julia> t = Template(; 
     user="tp2750",
     dir=".",
