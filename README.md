@@ -114,7 +114,6 @@ Code examples in documentaion files can share context if they are named.
 
 Eg:
 
-```{julia}
   ```@example 1
   a = 3
   ```
@@ -122,4 +121,3 @@ Eg:
   ```@example 1
   print(a)
   ```
-```
