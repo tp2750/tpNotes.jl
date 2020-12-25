@@ -60,6 +60,19 @@ tpNotes$ git remote set-url origin  git@github.com:tp2750/tpNotes.jl.git
 
 Remember the `.git` at the end.
 
+## Adding keys
+
+For ducumentation to automatically build, generate keys by running `DocumenterTools.genkeys` and follow the instructions:
+
+```{julia}
+(tpNotes) pkg> add DocumenterTools
+julia> using tpNotes
+julia> using DocumenterTools
+julia> DocumenterTools.genkeys(user = "tp2750", repo="git@github.com:tp2750/tpNotes.jl.git")
+```
+
+
+
 # Overloading Base operator
 
 Overloading a base bianry operator (like `+`):
@@ -89,3 +102,24 @@ julia> p1 + p2 == "Søren and Mette"
 true
 ```
 
+# Documentation using Documenter.jl
+
+Modules needed in documentation needs to be loaded in the `make.jl` file.
+This is also the place to control the sidebar (in the `pages = []` argument to `makedocs`).
+It is good practice to split documentation inseveral files.
+
+## Examples
+
+Code examples in documentaion files can share context if they are named.
+
+Eg:
+
+```{julia}
+  ```@example 1
+  a = 3
+  ```
+  
+  ```@example 1
+  print(a)
+  ```
+```
