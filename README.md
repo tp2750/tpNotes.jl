@@ -106,11 +106,12 @@ true
 
 Modules needed in documentation needs to be loaded in the `make.jl` file.
 This is also the place to control the sidebar (in the `pages = []` argument to `makedocs`).
-It is good practice to split documentation inseveral files.
+It is good practice to split documentation inseveral files. See https://juliadocs.github.io/Documenter.jl/stable/man/guide/#Pages-in-the-Sidebar
 
 ## Examples
 
-Code examples in documentaion files can share context if they are named.
+Code examples in documentaion files can share context if they are named. 
+The [documentation](https://juliadocs.github.io/Documenter.jl/stable/man/syntax/#@example-block) does not mention it, but it looks like named blocks have to be continuous (two blocks can not mix).
 
 Eg:
 
