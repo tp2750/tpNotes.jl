@@ -114,10 +114,12 @@ Code examples in documentaion files can share context if they are named.
 
 Eg:
 
-  ```@example 1
+<pre>
+```@example 1
   a = 3
-  ```
+```
   
-  ```@example 1
+```@example 1
   print(a)
-  ```
+```
+</pre>
