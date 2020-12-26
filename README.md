@@ -68,10 +68,9 @@ For ducumentation to automatically build, generate keys by running `DocumenterTo
 (tpNotes) pkg> add DocumenterTools
 julia> using tpNotes
 julia> using DocumenterTools
-julia> DocumenterTools.genkeys(user = "tp2750", repo="git@github.com:tp2750/tpNotes.jl.git")
+julia> DocumenterTools.genkeys(user = "tp2750", repo="tpNotes.jl")
 ```
-
-
+Name the public key "DOCUMENTER_PUB" and the private key "DOCUMENTER_KEY"
 
 # Overloading Base operator
 
