@@ -124,3 +124,7 @@ Eg:
   print(a)
 ```
 </pre>
+
+# Code coverage
+
+Computing code coverage locally is done as described in the [here](https://github.com/JuliaCI/Coverage.jl#working-locally) (in the README of the [Coverage.jl](https://github.com/JuliaCI/Coverage.jl) package).
