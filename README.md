@@ -9,6 +9,27 @@
 
 This repo tracks my notes on things I learn in Julia.
 
+# Vocabulary
+
+Standard idioms and their `R` equivalent.
+
+## Vectors
+
+### Extrema
+
+```{julia}
+julia> extrema([1,2,3])
+(1, 3)
+```
+
+```{r}
+> range(c(1,2,3))
+[1] 1 3
+```
+
+
+
+
 # Development
 
 ## PkgTemplates
