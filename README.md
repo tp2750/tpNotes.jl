@@ -15,16 +15,29 @@ Standard idioms and their `R` equivalent.
 
 ## Vectors
 
-### Extrema
+Julia
 
 ```{julia}
 julia> extrema([1,2,3])
 (1, 3)
+
+julia> first(collect(1:10))
+1
+
+julia> last(collect(1:10))
+10
+
 ```
+
+R
 
 ```{r}
 > range(c(1,2,3))
 [1] 1 3
+> head(1:10,1)
+[1] 1
+> tail(1:10,1)
+[1] 10
 ```
 
 
