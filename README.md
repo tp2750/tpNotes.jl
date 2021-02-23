@@ -40,6 +40,80 @@ R
 [1] 10
 ```
 
+## Combinations
+
+Julia
+
+```{julia}
+julia> using DataFrames
+julia> rename(DataFrame(Base.Iterators.product([1,2], ["A","B","C"])), ["Num","Name"])
+6×2 DataFrame
+ Row │ Num    Name   
+     │ Int64  String 
+─────┼───────────────
+   1 │     1  A
+   2 │     2  A
+   3 │     1  B
+   4 │     2  B
+   5 │     1  C
+   6 │     2  C
+
+julia> vec(string.(["x", "y"], [1 2 3])) ## note: col-vector, row-vector. Ref https://github.com/JuliaAcademy/DataFrames/blob/main/2.%20First%20steps%20with%20data%20frames.ipynb
+6-element Array{String,1}:
+ "x1"
+ "y1"
+ "x2"
+ "y2"
+ "x3"
+ "y3"
+
+
+```
+
+R
+
+```{r}
+setNames(expand.grid(c(1,2), c("A","B","C")), c("Num","Name"))
+  Num Name
+1   1    A
+2   2    A
+3   1    B
+4   2    B
+5   1    C
+6   2    C
+
+```
+## Loop over rows of data frame
+
+Julia
+
+```{julia}
+using DataFrames, DataFramesMeta
+
+df_in = rename(DataFrame(Base.Iterators.product([1,2], ["A","B","C"])), ["Num","Name"]);
+
+@eachrow df_in begin 
+  @newcol Res1::Vector{String}
+  @newcol Res2::Vector{String}
+  :Res1 = string(:Num) * :Name
+  :Res2 = :Name * string(:Num)
+end
+
+6×4 DataFrame
+ Row │ Num    Name    Res1    Res2   
+     │ Int64  String  String  String 
+─────┼───────────────────────────────
+   1 │     1  A       1A      A1
+   2 │     2  A       2A      A2
+   3 │     1  B       1B      B1
+   4 │     2  B       2B      B2
+   5 │     1  C       1C      C1
+   6 │     2  C       2C      C2
+
+## Simpler for this case:
+@transform(df_in, Res1 = string.(:Num) .* :Name, Res2 = :Name .* string.(:Num))
+
+```
 
 
 
