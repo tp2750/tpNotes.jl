@@ -115,6 +115,7 @@ end
 
 ```
 
+The last form is much simpler, but only works if the function can be broardcasted (afaIk).
 
 
 # Development
