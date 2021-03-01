@@ -236,3 +236,9 @@ Eg:
 # Code coverage
 
 Computing code coverage locally is done as described in the [here](https://github.com/JuliaCI/Coverage.jl#working-locally) (in the README of the [Coverage.jl](https://github.com/JuliaCI/Coverage.jl) package).
+
+# PacakgeCompile
+
+Remember to "dev" the local module from the "app" module.
+If not, you need to re-add every time you make changes to the actual module.
+
