@@ -130,6 +130,34 @@ true
 > "fit_file" %in% names(args)
 ```
 
+### Collect instances into a dict
+See https://discourse.julialang.org/t/collect-values-in-a-dict/64626
+```{julia}
+julia> l = [x => x%3 for x in 1:10];
+julia> d = Dict{Int, Vector{Int}}()
+julia> [push!(get!(d,y,Int[]), x) for (x,y) in l];
+julia> d
+
+Dict{Int64, Vector{Int64}} with 3 entries:
+  0 => [3, 6, 9]
+  2 => [2, 5, 8]
+  1 => [1, 4, 7, 10]
+```
+
+Similar in `R` (not explicit pairs):
+```{r}
+> l <- (1:10)%%3
+> setNames(lapply(unique(l), function(x) which(l == x)), unique(l))
+`1`
+[1]  1  4  7 10
+
+$`2`
+[1] 2 5 8
+
+$`0`
+[1] 3 6 9
+```
+
 
 # Development
 
