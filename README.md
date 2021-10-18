@@ -135,7 +135,9 @@ See https://discourse.julialang.org/t/collect-values-in-a-dict/64626
 ```{julia}
 julia> l = [x => x%3 for x in 1:10];
 julia> d = Dict{Int, Vector{Int}}()
-julia> [push!(get!(d,y,Int[]), x) for (x,y) in l];
+julia> for (x,y) in l
+julia>   push!(get!(Vector{Int},d,y), x) 
+julia> end
 julia> d
 
 Dict{Int64, Vector{Int64}} with 3 entries:
