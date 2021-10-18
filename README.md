@@ -283,3 +283,10 @@ Computing code coverage locally is done as described in the [here](https://githu
 Remember to "dev" the local module from the "app" module.
 If not, you need to re-add every time you make changes to the actual module.
 
+# Misc
+
+## Which project is active?
+
+```
+Base.active_project()
+```
