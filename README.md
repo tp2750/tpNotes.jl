@@ -357,4 +357,27 @@ julia> assignments(res2)
  1
  ```
  
+# Conversions
+
+## matrix to vector and back
+
+```
+julia> m = [1 3 5; 2 4 6]
+2×3 Matrix{Int64}:
+ 1  3  5
+ 2  4  6
+
+julia> vec(m)
+6-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
  
+julia> reshape(vec(m), size(m)) == m
+true
+```
+
+
