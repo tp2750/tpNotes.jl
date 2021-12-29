@@ -292,3 +292,69 @@ If not, you need to re-add every time you make changes to the actual module.
 ```
 Base.active_project()
 ```
+
+# K-means
+* K-means
+https://juliastats.org/Clustering.jl/dev/kmeans.html
+
+Elements to cluster are in _columns_: (use x')
+
+```{julia}
+using Clustering
+julia> x=vcat(0,repeat(1:1,10))
+julia> res = kmeans(x',2) ## or kmeans(reshape(x, 1,11),2) 
+julia> res.centers
+1×2 Matrix{Float64}:
+ 1.0  0.0
+julia> assignments(res)
+11-element Vector{Int64}:
+ 2
+ 1
+ 1
+ 1
+ 1
+ 1
+ 1
+ 1
+ 1
+ 1
+ 1
+```
+
+## K-medoids
+Selects a representing point.
+
+Needs distance matrix.
+
+```{julia}
+julia> using Distances
+julia> x_dist = pairwise(Euclidean(), x'; dims=2)
+# or simply (https://discourse.julialang.org/t/pairwise-distances-from-a-single-column-or-vector/29415/6)
+julia> x_dist = [abs(i-j) for i in x, j in x]
+
+julia> res2 = kmedoids(x_dist, 2)
+julia> res2.medoids ## indices of medoid points
+2-element Vector{Int64}:
+ 2
+ 1
+# medoid points:
+julia> x[res2.medoids]
+2-element Vector{Int64}:
+ 1
+ 0
+julia> assignments(res2)
+11-element Vector{Int64}:
+ 2
+ 1
+ 1
+ 1
+ 1
+ 1
+ 1
+ 1
+ 1
+ 1
+ 1
+ ```
+ 
+ 
