@@ -67,7 +67,6 @@ julia> vec(string.(["x", "y"], [1 2 3])) ## note: col-vector, row-vector. Ref ht
  "x3"
  "y3"
 
-
 ```
 
 R
@@ -83,6 +82,55 @@ setNames(expand.grid(c(1,2), c("A","B","C")), c("Num","Name"))
 6   2    C
 
 ```
+## `paste` 
+
+The R function `paste` does 2 things: 1. paste the elements of two string vectors together element by element; 2: collapse a string vector into a single string.
+
+### Combining
+
+R:
+
+```{r}
+paste(c("a", "b"), c(1,2))
+[1] "a 1" "b 2"
+paste(c("a", "b"), c(1,2), sep="")
+[1] "a1" "b2"
+```
+ 
+```{julia}
+julia> string.(["a", "b"], " ", [1,2])
+2-element Vector{String}:
+ "a 1"
+ "b 2"
+
+julia> string.(["a", "b"], [1,2])
+2-element Vector{String}:
+ "a1"
+ "b2"
+```
+### Collapse
+
+R
+
+```{r}
+> paste(c("a", "b", "c"), collapse="")
+[1] "abc"
+> paste(c("a", "b", "c"), collapse=", ")
+[1] "a, b, c"
+```
+
+Julia:
+
+```{julia}
+julia> join(["a", "b", "c"])
+"abc"
+
+julia> join(["a", "b", "c"], ", ")
+"a, b, c"
+julia> join(["a", "b", "c"], ", ", " and ")
+"a, b and c"
+```
+
 ## Loop over rows of data frame
 
 Julia
