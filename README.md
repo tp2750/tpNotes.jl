@@ -13,6 +13,8 @@ This repo tracks my notes on things I learn in Julia.
 
 Standard idioms and their `R` equivalent.
 
+Some R function names are implemented in `src/r.jl`
+
 ## Vectors
 
 Julia
@@ -429,3 +431,50 @@ true
 ```
 
 
+# Tests
+## Comparing at stated precision
+https://discourse.julialang.org/t/compare-numbers-at-the-stated-precision/86719/10
+In tests I’ll like to be able to write the following and the test to pass:
+
+```julia
+@test aresame(pi, 3.14)
+```
+
+The following works:
+
+
+```julia
+@test isapprox(pi, 3.14, atol = 0.005)
+```
+
+But then I need to adjust the absolute tolerance manually.
+
+I need a function to find the “number of significant digits” of a numeric literal and use that.
+
+The following apparently works, but I’m wondering if this already exists?
+
+
+```julia
+function sigdigs(x)
+    x_string = string(convert(Float64,x))
+    length(x_string) - findlast('.',x_string)
+end
+
+function aresame(x,y)
+    tol_digits = min(sigdigs(x), sigdigs(y))
+    tol = .49*0.1^(tol_digits)
+    isapprox(x,y,atol=tol)
+end
+
+julia> aresame(pi,3.1)
+true
+
+julia> aresame(pi,3.14)
+true
+
+julia> aresame(pi,3.141)
+false
+
+julia> aresame(pi,3.1415)
+false
+```
