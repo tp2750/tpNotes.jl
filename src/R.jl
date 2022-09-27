@@ -11,6 +11,7 @@ module Rfunctions
 """
 macro capture_output(ex::Expr)
     ## See https://giordano.github.io/blog/2022-06-18-first-macro/
+    ## eg sprint(io -> show(io,a))
     return :( sprint(io -> $(ex.args[1])(io,$(ex.args[2]))) )
 end
 
