@@ -222,10 +222,10 @@ julia> t = Template(;
     user="tp2750",
     dir=".",
     authors="Thomas Poulsen",
-    julia=v"1.5.3",
+    julia=v"1.6",
     plugins=[
         License(; name="GPL-2.0+"),
-        Git(; manifest=false, ssh=false),
+        Git(; manifest=false, ssh=true),
         GitHubActions(;extra_versions=["nightly"], x86=false, windows=false, osx=false), ## skip some defaults
         Codecov(),
         Documenter{GitHubActions}(),
@@ -478,3 +478,25 @@ false
 julia> aresame(pi,3.1415)
 false
 ```
+
+# Packages
+Cool and useful packages
+
+## [TerminalPager.jl](https://github.com/ronisbr/TerminalPager.jl)
+Great for browsing large tables:
+
+```
+using TerminalPager, DataFrames
+pager(DataFrame(rand(100, 100), :auto))
+```
+
+Press ? to get navigation help:
+
+* Shift ->, Shift <- to move side-wise
+* u/d to move up/down by half a page or
+  Page-up/down for full page
+* < or g to go to top
+* > or G to go to end
+
+## [DefaultApplication.jl](https://github.com/tpapp/DefaultApplication.jl)
+Basically just calling `xdg-open`, but still useful.
