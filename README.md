@@ -309,6 +309,15 @@ Modules needed in documentation needs to be loaded in the `make.jl` file.
 This is also the place to control the sidebar (in the `pages = []` argument to `makedocs`).
 It is good practice to split documentation in several files. See https://juliadocs.github.io/Documenter.jl/stable/man/guide/#Pages-in-the-Sidebar
 
+## Building the docs
+
+to build the docs, cd to the docs folder, and jun make.jl in the context of the docs project:
+
+``` julia
+tpNotes.jl/docs$ julia --project=. make.jl 
+
+```
+
 ## Examples
 
 Code examples in documentation files can share context if they are named. 
