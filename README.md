@@ -318,6 +318,8 @@ tpNotes.jl/docs$ julia --project=. make.jl
 
 ```
 
+In github, set github-pages to build from the branch: `gh-pages` in the `/ (root)` folder.
+
 ## Examples
 
 Code examples in documentation files can share context if they are named. 
