@@ -264,7 +264,7 @@ Remember the `.git` at the end.
 
 ## Adding keys
 
-For documentation to automatically build, generate keys by running `DocumenterTools.genkeys` and follow the instructions:
+For documentation to automatically build, generate keys by running `DocumenterTools.genkeys` and follow the instructions (except that the deploy key _must_ be called DOCUMENTER_PUB and not Documenter as it will be if following the documentation).
 
 ```{julia}
 (tpNotes) pkg> add DocumenterTools
@@ -272,7 +272,7 @@ julia> using tpNotes
 julia> using DocumenterTools
 julia> DocumenterTools.genkeys(user = "tp2750", repo="tpNotes.jl")
 ```
-Name the public key "DOCUMENTER_PUB" and the private key "DOCUMENTER_KEY"
+Name the public key (deploy key) "DOCUMENTER_PUB" and the private key (repository secret under Settings -> Secrets and variables -> Actions -> Repository secret) "DOCUMENTER_KEY"-
 
 # Overloading Base operator
 
@@ -511,3 +511,8 @@ Press ? to get navigation help:
 
 ## [DefaultApplication.jl](https://github.com/tpapp/DefaultApplication.jl)
 Basically just calling `xdg-open`, but still useful.
+
+# Base functions
+
+* `repr` Create a string from any value using the show function.
+* replace(string, pattern => replacement; [count])
