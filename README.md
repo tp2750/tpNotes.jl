@@ -264,7 +264,11 @@ Remember the `.git` at the end.
 
 ## Adding keys
 
-For documentation to automatically build, generate keys by running `DocumenterTools.genkeys` and follow the instructions (except that the deploy key _must_ be called DOCUMENTER_PUB and not Documenter as it will be if following the documentation).
+For documentation to automatically build, generate keys by running `DocumenterTools.genkeys` and follow the instructions.
+
+**OBS** Remeber to set the proper workflow permissions: "horizontal menu: Settings -> vertical menu: Actions -> General -> section: Workflow permissions: choose "Read and write permissions" and check the box: "Allow GiHub Actions to create and approve pull requests". 
+This is not needed to build documentation, but it is needed for compatHelper to create pull requests when dependencies need to be updated.
+
 
 ```{julia}
 (tpNotes) pkg> add DocumenterTools
