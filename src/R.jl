@@ -1,5 +1,8 @@
 module Rfunctions
 
+## Naming idea: FakeR.jl
+## Fake it 'till you make it.
+
 ## implementation of R function names (or close)
 ## Nothing exported to not pollute the namespace
 ## Eg range() in julia is like seq in R, and range() in R is extrema in julia
@@ -18,8 +21,13 @@ end
 """
     R: range(c(1,2,3))
     julia: extrema([1,2,3])
+    Nore range() in Julia has meaning similar to seq() in R
 """
+
 range(v::Vector) = extrema(v)
     
+
+c(a...) = [a...]
+
 
 end

@@ -1,5 +1,7 @@
 module tpNotes
 
+#include("R.jl")
+
 struct People
     name::String
 end

@@ -264,7 +264,11 @@ Remember the `.git` at the end.
 
 ## Adding keys
 
-For documentation to automatically build, generate keys by running `DocumenterTools.genkeys` and follow the instructions:
+For documentation to automatically build, generate keys by running `DocumenterTools.genkeys` and follow the instructions.
+
+**OBS** Remeber to set the proper workflow permissions: "horizontal menu: Settings -> vertical menu: Actions -> General -> section: Workflow permissions: choose "Read and write permissions" and check the box: "Allow GiHub Actions to create and approve pull requests". 
+This is not needed to build documentation, but it is needed for compatHelper to create pull requests when dependencies need to be updated.
+
 
 ```{julia}
 (tpNotes) pkg> add DocumenterTools
@@ -272,7 +276,7 @@ julia> using tpNotes
 julia> using DocumenterTools
 julia> DocumenterTools.genkeys(user = "tp2750", repo="tpNotes.jl")
 ```
-Name the public key "DOCUMENTER_PUB" and the private key "DOCUMENTER_KEY"
+Name the public key (deploy key) "DOCUMENTER_PUB" and the private key (repository secret under Settings -> Secrets and variables -> Actions -> Repository secret) "DOCUMENTER_KEY"-
 
 # Overloading Base operator
 
@@ -317,6 +321,8 @@ to build the docs, cd to the docs folder, and jun make.jl in the context of the 
 tpNotes.jl/docs$ julia --project=. make.jl 
 
 ```
+
+In github, set github-pages to build from the branch: `gh-pages` in the `/ (root)` folder.
 
 ## Examples
 
@@ -509,3 +515,8 @@ Press ? to get navigation help:
 
 ## [DefaultApplication.jl](https://github.com/tpapp/DefaultApplication.jl)
 Basically just calling `xdg-open`, but still useful.
+
+# Base functions
+
+* `repr` Create a string from any value using the show function.
+* replace(string, pattern => replacement; [count])
