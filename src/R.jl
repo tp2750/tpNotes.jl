@@ -11,6 +11,7 @@ module Rfunctions
     R: capture.output()
     @capture_output print(a)
     Returns the output of the expression as a string
+    See also repr. Similar to deparse in R
 """
 macro capture_output(ex::Expr)
     ## See https://giordano.github.io/blog/2022-06-18-first-macro/
