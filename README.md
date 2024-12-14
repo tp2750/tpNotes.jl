@@ -262,7 +262,13 @@ tpNotes$ git remote set-url origin  git@github.com:tp2750/tpNotes.jl.git
 
 Remember the `.git` at the end.
 
-## Adding keys
+# Documentation using Documenter.jl
+
+Modules needed in documentation needs to be loaded in the `make.jl` file.
+This is also the place to control the sidebar (in the `pages = []` argument to `makedocs`).
+It is good practice to split documentation in several files. See https://juliadocs.github.io/Documenter.jl/stable/man/guide/#Pages-in-the-Sidebar
+
+## Adding keys for Documenter and Github Actions
 
 For documentation to automatically build, generate keys by running `DocumenterTools.genkeys` and follow the instructions.
 
@@ -277,6 +283,34 @@ julia> using DocumenterTools
 julia> DocumenterTools.genkeys(user = "tp2750", repo="tpNotes.jl")
 ```
 Name the public key (deploy key) "DOCUMENTER_PUB" and the private key (repository secret under Settings -> Secrets and variables -> Actions -> Repository secret) "DOCUMENTER_KEY"-
+
+## Building the docs
+
+to build the docs, cd to the docs folder, and jun make.jl in the context of the docs project:
+
+``` julia
+tpNotes.jl/docs$ julia --project=. make.jl 
+
+```
+
+In github, set github-pages to build from the branch: `gh-pages` in the `/ (root)` folder.
+
+## Examples
+
+Code examples in documentation files can share context if they are named. 
+The [documentation](https://juliadocs.github.io/Documenter.jl/stable/man/syntax/#@example-block) does not mention it, but it looks like named blocks have to be continuous (two blocks can not mix).
+
+Eg:
+
+<pre>
+```@example 1
+  a = 3
+```
+  
+```@example 1
+  print(a)
+```
+</pre>
 
 # Overloading Base operator
 
@@ -307,39 +341,6 @@ julia> p1 + p2 == "Søren and Mette"
 true
 ```
 
-# Documentation using Documenter.jl
-
-Modules needed in documentation needs to be loaded in the `make.jl` file.
-This is also the place to control the sidebar (in the `pages = []` argument to `makedocs`).
-It is good practice to split documentation in several files. See https://juliadocs.github.io/Documenter.jl/stable/man/guide/#Pages-in-the-Sidebar
-
-## Building the docs
-
-to build the docs, cd to the docs folder, and jun make.jl in the context of the docs project:
-
-``` julia
-tpNotes.jl/docs$ julia --project=. make.jl 
-
-```
-
-In github, set github-pages to build from the branch: `gh-pages` in the `/ (root)` folder.
-
-## Examples
-
-Code examples in documentation files can share context if they are named. 
-The [documentation](https://juliadocs.github.io/Documenter.jl/stable/man/syntax/#@example-block) does not mention it, but it looks like named blocks have to be continuous (two blocks can not mix).
-
-Eg:
-
-<pre>
-```@example 1
-  a = 3
-```
-  
-```@example 1
-  print(a)
-```
-</pre>
 
 # Code coverage
 
