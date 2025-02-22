@@ -521,3 +521,69 @@ Basically just calling `xdg-open`, but still useful.
 
 * `repr` Create a string from any value using the show function.
 * replace(string, pattern => replacement; [count])
+
+# Reuse installed version of packages
+From julia 1.9 we can change the default package installation strategy to Pkg.PRESERVE_TIERED_INSTALLED to let the package manager try to install versions of packages while keeping as many versions of packages already installed as possible:
+
+``` julia
+ENV["JULIA_PKG_PRESERVE_TIERED_INSTALLED"] = true
+```
+
+See https://docs.julialang.org/en/v1/manual/environment-variables/#JULIA_PKG_PRESERVE_TIERED_INSTALLED,
+https://pkgdocs.julialang.org/v1/api/#Pkg.add
+
+From doc of Pkg.add:
+
+Pkg resolves the set of packages in your environment using a tiered algorithm. The preserve keyword argument allows you to key into a specific tier in the resolve algorithm. The following table describes the argument values for preserve (in order of strictness):
+
+| Value | Description |
+| -- | -- |
+| PRESERVE_ALL_INSTALLED |  Like PRESERVE_ALL and only add those already installed |
+| PRESERVE_ALL | Preserve the state of all existing dependencies (including recursive dependencies) |
+| PRESERVE_DIRECT | Preserve the state of all existing direct dependencies |
+| PRESERVE_SEMVER | Preserve semver-compatible versions of direct dependencies |
+| PRESERVE_NONE | Do not attempt to preserve any version information |
+| PRESERVE_TIERED_INSTALLED | Like PRESERVE_TIERED except PRESERVE_ALL_INSTALLED is tried first |
+| PRESERVE_TIERED | Use the tier that will preserve the most version information while allowing version resolution to succeed (this is the default) | 
+	
+
+# startup.jl
+
+My current `.julia/config/startup.jl` file
+
+
+``` julia
+ENV["JULIA_EDITOR"] = "emacs"
+# ENV["JULIA_NUM_THREADS"]=3,1
+using Revise
+#using Infiltrator
+#using DrWatson
+## using PkgTemplates
+ENV["pkg_template"] = """Template(;julia=v"1.10",user="tp2750",dir = ".", plugins=[Git(; manifest=false, ssh=true),Documenter{GitHubActions}(),GitHubActions(extra_versions= ["1.10", "1.11")])"""
+@info """To start a package, do:\nusing PkgTemplates\nt = eval(Meta.parse(ENV["pkg_template"]))\nt("MyPackage")"""
+## ENV["JULIA_PKG_PRESERVE_TIERED_INSTALLED"] = true
+## @info "PRESERVE_TIERED_INSTALLED set by JULIA_PKG_PRESERVE_TIERED_INSTALLED"
+## @info "To reset to default do: ENV[\"JULIA_PKG_PRESERVE_TIERED_INSTALLED\"] = true"
+@info "To prefer already installed versions of libraries, set ENV[\"JULIA_PKG_PRESERVE_TIERED_INSTALLED\"] = true\n Undo by ENV[\"JULIA_PKG_PRESERVE_TIERED_INSTALLED\"] = true"
+
+##   https://twitter.com/heyjoshday/status/1555527185028395010
+# macro dev()
+#     pkg = Symbol(
+#     replace(
+#     readline("Project.toml"),
+#     "name = \"" => "",
+#     '"' => ""
+#        )
+#     )
+#     esc(:(using Pkg; Pkg.activate("."); using Revise, $pkg))
+# end
+
+# ## https://discourse.julialang.org/t/what-is-in-your-startup-jl/18228/2?u=tp2750
+# cdpkg(pkg) = cd(dirname(Base.find_package(string(pkg))))
+
+# macro cdpkg(pkg)
+#     cdpkg(pkg)
+#     return nothing
+# end
+
+```
