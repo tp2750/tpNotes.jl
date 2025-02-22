@@ -15,7 +15,8 @@ makedocs(;
         "Home" => "index.md",
         "README" => "README.md",
         "Logging" => "logging.md",
-        "Running system commands" => "system.md"
+        "Running system commands" => "system.md",
+        "Vectors" => "vectors.md",
     ],
 )
 
